@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Appliance Energy Consumption Website for COS30045 Tutorial 5">
+  <meta name="keywords" content="COS30045, Tutorial 5, Index, Appliance Energy Consumption Website">
+  <meta name="author" content="Wee Yee Heng">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/visualisations.css">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <script type="text/javascript" src="js/script.js"></script>
+  <title>Responsive D3 Chart</title>
+</head>
+<body>
+  <header class="navbar">
+    <h1>TV Energy Consumption</h1>
+  </header>
+
+  <main class="main">
+    <div>
+        <h1>Energy Consumption for different TV screen types and sizes</h1>
+        <p>TV's vary considerably in energy consumption.</p>
+
+        <!-- div for filter buttons -->
+        <div id="filters_screen"></div>
+
+        <!-- div for charts -->
+        <div id="histogram" class="responsive-svg-container"></div>
+
+        <div class="body">
+            <h3>Data Source</h3>
+            <p>
+                <a href="https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9">
+                Energy Rating Data for household appliances - Televisions
+                </a><br>
+                Download Jan 2025
+            </p>
+        </div>
+    </div>
+</main>
+
+  <!-- D3 library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</body>
+</html>
