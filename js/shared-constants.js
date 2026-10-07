@@ -12,3 +12,7 @@ const bodyBackgroundColor = "#fbf2e8";
 // Set up scales; domains and ranges will be defined by the histogram.
 const xScale = d3.scaleLinear();
 const yScale = d3.scaleLinear();
+
+// Share the bin generator with future chart updates.
+const binGenerator = d3.bin()
+  .value(d => d.energyConsumption);
