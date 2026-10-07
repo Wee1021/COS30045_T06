@@ -16,3 +16,11 @@ const yScale = d3.scaleLinear();
 // Share the bin generator with future chart updates.
 const binGenerator = d3.bin()
   .value(d => d.energyConsumption);
+
+// Screen technology filters; only one filter is active at a time.
+const filters_screen = [
+  { id: "all", label: "All", isActive: true },
+  { id: "LED", label: "LED", isActive: false },
+  { id: "LCD", label: "LCD", isActive: false },
+  { id: "OLED", label: "OLED", isActive: false }
+];

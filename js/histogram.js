@@ -17,6 +17,11 @@ const drawHistogram = (data) => {
   const maxEng = bins[bins.length - 1].x1;
   const binsMaxLength = d3.max(bins, d => d.length);
 
+  // Preserve these bin boundaries when filtering so bars remain comparable.
+  binGenerator
+    .domain([minEng, maxEng])
+    .thresholds(bins.slice(1).map(d => d.x0));
+
   // Map energy consumption to horizontal position and frequency to height.
   xScale
     .domain([minEng, maxEng])
@@ -29,7 +34,7 @@ const drawHistogram = (data) => {
 
   // Draw bars with background-colored strokes to separate adjacent bins.
   innerChart.selectAll("rect")
-    .data(bins)
+    .data(bins, d => d.x0)
     .join("rect")
     .attr("x", d => xScale(d.x0))
     .attr("y", d => yScale(d.length))
