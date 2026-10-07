@@ -5,6 +5,11 @@ const height = 400;
 const innerWidth = width - margin.left - margin.right;
 const innerHeight = height - margin.top - margin.bottom;
 
+// Keep the scatterplot group accessible to future tooltip functions.
+let innerChartS;
+const tooltipWidth = 65;
+const tooltipHeight = 32;
+
 // Match the warm orange and cream background in base.css.
 const barColor = "#c65a20";
 const bodyBackgroundColor = "#fbf2e8";
@@ -12,6 +17,11 @@ const bodyBackgroundColor = "#fbf2e8";
 // Set up scales; domains and ranges will be defined by the histogram.
 const xScale = d3.scaleLinear();
 const yScale = d3.scaleLinear();
+
+// Independent scatterplot scales; configure domains and ranges when drawing.
+const xScaleS = d3.scaleLinear();
+const yScaleS = d3.scaleLinear();
+const colorScale = d3.scaleOrdinal();
 
 // Share the bin generator with future chart updates.
 const binGenerator = d3.bin()

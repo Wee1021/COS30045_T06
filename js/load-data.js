@@ -12,6 +12,7 @@ d3.csv("Ex6_TVdata.csv", d => ({
 
   // Draw the chart and create filters once the data has loaded.
   drawHistogram(data);
+  drawScatterplot(data);
   populateFilters(data);
 }).catch(error => {
   console.error("Error loading the CSV file or initialising the chart:", error);
