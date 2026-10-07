@@ -7,8 +7,8 @@ const innerHeight = height - margin.top - margin.bottom;
 
 // Keep the scatterplot group accessible to future tooltip functions.
 let innerChartS;
-const tooltipWidth = 65;
-const tooltipHeight = 32;
+const tooltipWidth = 300;
+const tooltipHeight = 78;
 
 // Match the warm orange and cream background in base.css.
 const barColor = "#c65a20";

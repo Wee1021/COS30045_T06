@@ -75,13 +75,14 @@ const createTooltip = () => {
     .attr("fill-opacity", 0.75);
 
   tooltip.append("text")
-    .text("NA")
-    .attr("x", tooltipWidth / 2)
-    .attr("y", tooltipHeight / 2 + 2)
-    .attr("text-anchor", "middle")
-    .attr("alignment-baseline", "middle")
+    .attr("x", 12)
+    .attr("y", 20)
     .attr("fill", "white")
-    .style("font-weight", 900);
+    .style("font-family", "monospace")
+    .style("font-size", "14px")
+    .style("font-weight", 600)
+    .append("tspan")
+    .text("NA");
 };
 
 const handleMouseEvents = () => {
@@ -90,14 +91,35 @@ const handleMouseEvents = () => {
   innerChartS.selectAll("circle")
     .on("mouseenter", (event, d) => {
       console.log("Mouse entered circle", d);
-      tooltip.select("text").text(d.screenSize);
+      // Wrap long brands and model numbers to fit the tooltip's fixed width.
+      const lines = [
+        `Brand: ${d.brand}`,
+        `Model: ${d.model}`,
+        `Screen size: ${d.screenSize} inches`
+      ].flatMap(line => line.match(/.{1,32}/gu) || [""]);
+
+      tooltip.select("text")
+        .selectAll("tspan")
+        .data(lines)
+        .join("tspan")
+        .attr("x", 12)
+        .attr("dy", (line, i) => i === 0 ? 0 : 18)
+        .text(line => line);
+
+      const currentHeight = Math.max(tooltipHeight, lines.length * 18 + 24);
+      tooltip.select("rect").attr("height", currentHeight);
 
       const cx = +event.currentTarget.getAttribute("cx");
       const cy = +event.currentTarget.getAttribute("cy");
 
+      // Prefer a position above the point; use the space below near the top.
+      const x = Math.max(0, Math.min(innerWidth - tooltipWidth, cx - tooltipWidth / 2));
+      const above = cy - currentHeight - 12;
+      const y = Math.max(0, Math.min(innerHeight - currentHeight, above >= 0 ? above : cy + 12));
+
       tooltip
         .interrupt()
-        .attr("transform", `translate(${cx - 0.5 * tooltipWidth},${cy - 1.5 * tooltipHeight})`)
+        .attr("transform", `translate(${x},${y})`)
         .transition()
         .duration(200)
         .style("opacity", 1);
