@@ -13,34 +13,42 @@
   <title>Responsive D3 Chart</title>
 </head>
 <body>
-  <header class="navbar">
-    <h1>TV Energy Consumption</h1>
-  </header>
+    <header class="navbar">
+        <h1>TV Energy Consumption</h1>
+    </header>
 
-  <main class="main">
-    <div>
-        <h1>Energy Consumption for different TV screen types and sizes</h1>
-        <p>TV's vary considerably in energy consumption.</p>
+    <main class="main">
+        <div>
+            <h1>Energy Consumption for different TV screen types and sizes</h1>
+            <p>TV's vary considerably in energy consumption.</p>
 
-        <!-- div for filter buttons -->
-        <div id="filters_screen"></div>
+            <!-- div for filter buttons -->
+            <div id="filters_screen"></div>
 
-        <!-- div for charts -->
-        <div id="histogram" class="responsive-svg-container"></div>
+            <!-- div for charts -->
+            <div id="histogram" class="responsive-svg-container"></div>
 
-        <div class="body">
-            <h3>Data Source</h3>
-            <p>
-                <a href="https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9">
-                Energy Rating Data for household appliances - Televisions
-                </a><br>
-                Download Jan 2025
-            </p>
+            <div class="body">
+                <h3>Data Source</h3>
+                <p>
+                    <a href="https://data.gov.au/data/dataset/energy-rating-for-household-appliances/resource/93a615e5-935e-4713-a4b0-379e3f6dedc9">
+                    Energy Rating Data for household appliances - Televisions
+                    </a><br>
+                    Download Jan 2025
+                </p>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
-  <!-- D3 library -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
+    <footer>
+        <p>&copy; 2025 Data Visualisation Week 6</p>
+    </footer>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/load-data.js"></script>
+    <script src="js/shared-constants.js"></script>
+    <script src="js/interactions.js"></script>
+    <script src="js/histogram.js"></script>
+
 </body>
 </html>
