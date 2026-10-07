@@ -14,6 +14,10 @@ d3.csv("Ex6_TVdata.csv", d => ({
   drawHistogram(data);
   drawScatterplot(data);
   populateFilters(data);
+
+  // Create the tooltip after the scatterplot group and circles exist.
+  createTooltip();
+  handleMouseEvents();
 }).catch(error => {
   console.error("Error loading the CSV file or initialising the chart:", error);
 });
