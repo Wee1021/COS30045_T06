@@ -1,0 +1,25 @@
+/* Responsive container for the SVG chart */
+.responsive-svg-container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Scale an SVG with a viewBox to fit its container */
+.responsive-svg-container svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 596px) {
+  .responsive-svg-container {
+    margin-bottom: 20px;
+  }
+}
+
+/* Labels for energy consumption and TV screen size */
+.axis-label {
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  fill: var(--text, #5a3e2b); /* Dark brown */
+}
