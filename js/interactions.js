@@ -1,9 +1,12 @@
 const populateFilters = (data) => {
   // Update frequencies while keeping the original bins and scales.
-  const updateHistogram = (filterId, data) => {
-    const updatedData = filterId === "all"
-      ? data
-      : data.filter(tv => tv.screenTech === filterId);
+  const updateHistogram = () => {
+    const screenTech = filters_screen.find(filter => filter.isActive).id;
+    const screenSize = filters_size.find(filter => filter.isActive).id;
+    const updatedData = data.filter(tv =>
+      (screenTech === "all" || tv.screenTech === screenTech) &&
+      (screenSize === "all" || tv.screenSize === screenSize)
+    );
 
     const updatedBins = binGenerator(updatedData);
 
@@ -24,30 +27,35 @@ const populateFilters = (data) => {
       .attr("height", d => innerHeight - yScale(d.length));
   };
 
-  // Create buttons using the existing filter styles in base.css.
-  const buttons = d3.select("#filters_screen")
-    .selectAll(".filter")
-    .data(filters_screen, d => d.id)
-    .join("button")
-    .attr("type", "button")
-    .attr("class", "filter")
-    .classed("active", d => d.isActive)
-    .attr("aria-pressed", d => d.isActive)
-    .text(d => d.label)
-    .on("click", (event, d) => {
-      // Clicking the selected filter leaves it active.
-      if (d.isActive) return;
+  // Use the same styles and exclusive selection behavior for both groups.
+  const addFilterButtons = (selector, filters) => {
+    const buttons = d3.select(selector)
+      .selectAll(".filter")
+      .data(filters, d => d.id)
+      .join("button")
+      .attr("type", "button")
+      .attr("class", "filter")
+      .classed("active", d => d.isActive)
+      .attr("aria-pressed", d => d.isActive)
+      .text(d => d.label)
+      .on("click", (event, d) => {
+        // Clicking the selected filter leaves it active.
+        if (d.isActive) return;
 
-      filters_screen.forEach(filter => {
-        filter.isActive = filter.id === d.id;
+        filters.forEach(filter => {
+          filter.isActive = filter.id === d.id;
+        });
+
+        buttons
+          .classed("active", filter => filter.isActive)
+          .attr("aria-pressed", filter => filter.isActive);
+
+        updateHistogram();
       });
+  };
 
-      buttons
-        .classed("active", filter => filter.isActive)
-        .attr("aria-pressed", filter => filter.isActive);
-
-      updateHistogram(d.id, data);
-    });
+  addFilterButtons("#filters_screen", filters_screen);
+  addFilterButtons("#filters_size", filters_size);
 };
 
 const createTooltip = () => {
