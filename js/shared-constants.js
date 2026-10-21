@@ -11,8 +11,8 @@ const tooltipWidth = 300;
 const tooltipHeight = 78;
 
 // Match the warm orange and cream background in base.css.
-const barColor = "#c65a20";
-const bodyBackgroundColor = "#fbf2e8";
+const barColor = "#4682B4";
+const bodyBackgroundColor = "#FFFFFF";
 
 // Set up scales; domains and ranges will be defined by the histogram.
 const xScale = d3.scaleLinear();

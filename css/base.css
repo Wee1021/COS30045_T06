@@ -104,3 +104,91 @@ footer p{ margin:0; text-align:center; font-size:14px; }
   main{ padding:18px 14px; }
   #filters_screen button, #filters_size button{ padding:8px 10px; }
 }
+
+
+/* Unified colour theme for COS30045 tutorials */
+:root {
+    --accent: #F5A623;
+    --accent-dark: #A85D06;
+    --bg: #EAF7FC;
+    --surface: #FFFFFF;
+    --text: #3F4850;
+    --muted: #6A6A6A;
+}
+
+/* Navbar */
+header {
+    background-color: #D7F0FA;
+    color: #2F4050;
+    padding: 14px 24px;
+    border-bottom: 1px solid #CADDE6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+    color: #2F4050;
+}
+
+/* Main content */
+main h1,
+main h2,
+main h3 {
+    color: #2F4050;
+}
+
+main h1 {
+    text-align: center;
+}
+
+p,
+.body {
+    color: var(--text);
+}
+
+/* Interactive filters */
+#filters_screen .filter,
+#filters_size .filter {
+    background-color: #FFFFFF;
+    color: #2F4050;
+    border: 1px solid #CADDE6;
+    border-radius: 6px;
+}
+
+#filters_screen .filter.active,
+#filters_size .filter.active {
+    background-color: #F5A623;
+    color: #2F4050;
+    border-color: #F5A623;
+}
+
+#filters_screen .filter:hover,
+#filters_size .filter:hover {
+    background-color: #FBE2A4;
+}
+
+#filters_screen .filter:focus-visible,
+#filters_size .filter:focus-visible {
+    outline: 2px solid #2F4050;
+    outline-offset: 2px;
+}
+
+/* Chart area */
+.responsive-svg-container {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* Footer */
+footer {
+    background-color: #F7E7A4;
+    color: #3F4850;
+    border-top: 1px solid #E0CE82;
+    padding: 28px 24px;
+}
+
+footer p {
+    color: #3F4850;
+}
